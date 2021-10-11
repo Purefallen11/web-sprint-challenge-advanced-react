@@ -7,7 +7,11 @@ import CheckoutForm from "./CheckoutForm";
 
 test("renders without errors", () => {
 	render(<CheckoutForm />)
-	
+
 });
 
-test("shows success message on submit with form details", () => {});
+test("shows success message on submit with form details", () => {
+	render(<CheckoutForm />)
+
+	
+});

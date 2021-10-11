@@ -1,19 +1,20 @@
 // write your custom hook here to control your checkout form
 import {useState} from 'react'
 
-const useForm = (key,initialValues) =>{
-	const [storedValue, setStoredValue] = useState(() =>{
-		const item = window.localStorage.getItem(key);
-		return item ? JSON.parse(item) : initialValues;
-	});
+const useForm = (props) =>{
+	const [values, setValues] = useState(props);
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-	const setValue = value =>{
-		setStoredValue(value)
-		window.localStorage.setItem(key, JSON.stringify(value))
-	}
+	const handleChanges = (e) => {
+		setValues({ ...values, [e.target.name]: e.target.value });
+		};
 
-	return [storedValue, setValue]
+		const handleSubmit = (e) => {
+			e.preventDefault();
+			setShowSuccessMessage(true);
+			};
 
+	return [showSuccessMessage, values, handleChanges, handleSubmit]
 }
 
 export default useForm
